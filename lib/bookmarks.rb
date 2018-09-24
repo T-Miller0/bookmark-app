@@ -3,8 +3,12 @@ require 'pg'
 class Bookmarks
   attr_reader :all_bookmarks
 
-  def self.create
-    @@bookmarks = Bookmarks.new
+  def initialize(database)
+    @database = database
+  end
+
+  def self.create(database = "bookmark_manager")
+    @@bookmarks = Bookmarks.new(database)
   end
 
   def self.instance

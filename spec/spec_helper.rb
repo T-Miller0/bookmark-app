@@ -4,6 +4,7 @@ require './app'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require_relative 'helper_methods'
 
 Capybara.app = BookmarkManager
 
