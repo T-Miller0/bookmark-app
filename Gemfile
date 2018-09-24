@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'capybara'
+gem 'pg'
 gem 'rack'
 gem 'rspec'
 gem 'rubocop'

@@ -8,8 +8,8 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks' do
-    default_list = ['www.bbc.co.uk', 'www.google.co.uk', 'www.youtube.com']
-    @bookmarks = Bookmarks.create(default_list)
+    @bookmarks = Bookmarks.create
+    @bookmarks.get_bookmarks
     erb(:bookmarks)
   end
 
