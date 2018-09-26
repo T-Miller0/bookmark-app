@@ -2,7 +2,7 @@ require 'bookmarks'
 
 RSpec.describe Bookmarks do
 
-  subject { described_class.new('bookmark_manager_test') }
+  subject { described_class.new }
 
   before(:each) do
     empty_test_database
@@ -13,4 +13,11 @@ RSpec.describe Bookmarks do
     expect(subject.get_all_bookmarks).to be_an Array
   end
 
+  it 'can recognise valid urls' do
+    expect(subject.valid_url?('http://www.google.com')).to eq 0
+  end
+
+  it 'can recognise invalid urls' do
+    expect(subject.valid_url?('billy')).to eq nil
+  end
 end
