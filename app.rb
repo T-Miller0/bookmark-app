@@ -13,8 +13,8 @@ class BookmarkManager < Sinatra::Base
 
   get '/bookmarks' do
     @bookmarks = Bookmarks.new
-    @bookmark_list = @bookmarks.get_all_bookmarks
     session[:bookmarks] = @bookmarks
+    @bookmark_list = @bookmarks.get_all_bookmarks
     erb(:bookmarks)
   end
 
@@ -24,10 +24,12 @@ class BookmarkManager < Sinatra::Base
 
   post '/bookmarks/new' do
     @bookmarks = session[:bookmarks]
-    if @bookmarks.valid_url?(params[:new_bookmark])
-      @bookmarks.add_bookmark(params[:new_bookmark])
-    else
+    if @bookmarks.valid_url?(params[:new_bookmark]) && params[:title] != ''
+      @bookmarks.add_bookmark(params[:new_bookmark], params[:title])
+    elsif params[:title] != ''
       flash[:hello] = 'Bookmark invalid'
+    else
+      flash[:hello] = 'Title invalid'
     end
     redirect '/bookmarks'
   end

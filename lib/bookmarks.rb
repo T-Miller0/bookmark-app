@@ -13,12 +13,12 @@ class Bookmarks
   end
 
   def get_all_bookmarks
-    result = @conn.exec("SELECT url FROM bookmarks")
-    result.map { |bookmark| bookmark['url'] }
+    result = @conn.exec("SELECT * FROM bookmarks")
+    result.map { |bookmark| bookmark.values_at('url', 'title') }
   end
 
-  def add_bookmark(url)
-    @conn.exec("INSERT INTO bookmarks(url) VALUES('#{url}')") if valid_url?(url)
+  def add_bookmark(url, title)
+    @conn.exec("INSERT INTO bookmarks(url, title) VALUES('#{url}', '#{title}')") if valid_url?(url)
   end
 
   def valid_url?(url)

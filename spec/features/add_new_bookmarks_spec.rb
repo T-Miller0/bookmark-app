@@ -3,7 +3,8 @@ feature 'user can add new bookmarks' do
     visit '/bookmarks'
     click_button 'Add new bookmark'
     fill_in :new_bookmark, with: 'https://www.facebook.com'
+    fill_in :title, with: 'facebook'
     click_button 'Submit'
-    expect(page).to have_content 'https://www.facebook.com'
+    expect(page).to have_content 'facebook'
   end
 end

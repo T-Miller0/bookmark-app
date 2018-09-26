@@ -5,7 +5,7 @@ feature 'View a list of bookmarks' do
     populate_test_database
     bookmark_manager = Bookmarks.new
     bookmark_manager.get_all_bookmarks.each do |link|
-      expect(page).to have_content(link)
+      expect(page).to have_content(link[1])
     end
   end
 end
