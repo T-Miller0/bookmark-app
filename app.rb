@@ -15,7 +15,11 @@ class BookmarkManager < Sinatra::Base
     erb(:bookmarks)
   end
 
-  post '/bookmark/new' do
+  get '/bookmarks/new' do
+    erb(:new_bookmark)
+  end
+
+  post '/bookmarks/new' do
     session[:bookmarks].add_bookmark(params[:new_bookmark])
     redirect '/bookmarks'
   end
