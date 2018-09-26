@@ -1,7 +1,12 @@
 <head>
 </head>
 <body>
-  <% @bookmarks.each do |bookmark| %>
+  <% @bookmark_list.each do |bookmark| %>
     <p><%= bookmark %></p>
   <% end %>
+
+  <form action='/bookmark/new' method='post'>
+    <input type='text' name='new_bookmark'/>
+    <input type='submit' value='Submit'/>
+  </form>
 </body>

@@ -2,8 +2,7 @@ require 'bookmarks'
 
 RSpec.describe Bookmarks do
 
-  subject { described_class.new }
-  Bookmarks.create("bookmark_manager_test")
+  subject { described_class.new('bookmark_manager_test') }
 
   before(:each) do
     empty_test_database
@@ -11,7 +10,7 @@ RSpec.describe Bookmarks do
   end
 
   it 'should return a list of bookmarks when asked' do
-    expect(Bookmarks.all).to be_an Array
+    expect(subject.get_all_bookmarks).to be_an Array
   end
 
 end
