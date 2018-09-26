@@ -6,6 +6,7 @@ require_relative 'lib/bookmarks'
 class BookmarkManager < Sinatra::Base
   use Rack::Session::Pool
   register Sinatra::Flash
+  enable :method_override
 
   get '/' do
     'Welcome to Bokkmarkz'
@@ -22,7 +23,7 @@ class BookmarkManager < Sinatra::Base
     erb(:new_bookmark)
   end
 
-  post '/bookmarks/new' do
+  post '/bookmarks' do
     @bookmarks = session[:bookmarks]
     if @bookmarks.valid_url?(params[:new_bookmark]) && params[:title] != ''
       @bookmarks.add_bookmark(params[:new_bookmark], params[:title])
@@ -31,6 +32,23 @@ class BookmarkManager < Sinatra::Base
     else
       flash[:hello] = 'Title invalid'
     end
+    redirect '/bookmarks'
+  end
+
+  get '/bookmarks/:id/edit' do
+    @bookmark_id = params[:id]
+    erb :bookmark_update
+  end
+
+  patch '/bookmarks/:id' do
+    @bookmarks = session[:bookmarks]
+    @bookmarks.update_id(params[:id], params[:new_bookmark], params[:new_title])
+    redirect '/bookmarks'
+  end
+
+  delete '/bookmarks/:id' do
+    @bookmarks = session[:bookmarks]
+    @bookmarks.delete_id(params[:id])
     redirect '/bookmarks'
   end
 

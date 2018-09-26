@@ -2,7 +2,16 @@
 </head>
 <body>
   <% @bookmark_list.each do |bookmark| %>
-    <a href="<%= bookmark[0] %>"><%= bookmark[1] %></a><br><br>
+    <div class='bookmark'>
+      <a href="<%= bookmark.url %>"><%= bookmark.title %></a>
+      <form action='/bookmarks/<%= bookmark.id %>' method='post'>
+        <input type='hidden' name='_method' value='DELETE'/>
+        <input type='submit' value='Delete' />
+      </form>
+      <form action='/bookmarks/<%= bookmark.id %>/edit' method='get'>
+        <input type='submit' value='Edit' />
+      </form>
+    </div><br><br>
   <% end %>
 
   <form action='/bookmarks/new' method='get'>

@@ -1,9 +1,10 @@
 ENV['RACK_ENV'] = 'test'
-
+ENV['ENVIRONMENT'] = 'test'
 require './app'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'pry'
 require_relative 'helper_methods'
 
 Capybara.app = BookmarkManager

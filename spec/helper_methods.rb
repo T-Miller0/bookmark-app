@@ -8,11 +8,11 @@ end
 def populate_test_database
   conn = PG.connect(dbname: 'bookmark_manager_test')
   test_urls = [
-    'http://www.google.com',
-    'http://www.makersacademy.com',
-    'http://www.destroyallsoftware.com'
+    ['http://www.google.com', 'Google'],
+    ['http://www.makersacademy.com', 'Makers'],
+    ['http://www.destroyallsoftware.com', 'DestroyAllSoftware']
   ]
-  test_urls.each do |url|
-    conn.exec("INSERT INTO bookmarks(url) VALUES('#{url}')")
+  test_urls.each do |bookmark|
+    conn.exec("INSERT INTO bookmarks(url, title) VALUES('#{bookmark[0]}', '#{bookmark[1]}')")
   end
 end

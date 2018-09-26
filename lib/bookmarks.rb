@@ -1,5 +1,6 @@
 require 'pg'
 require 'uri'
+require_relative 'bookmark'
 
 class Bookmarks
   attr_reader :all_bookmarks
@@ -14,7 +15,7 @@ class Bookmarks
 
   def get_all_bookmarks
     result = @conn.exec("SELECT * FROM bookmarks")
-    result.map { |bookmark| bookmark.values_at('url', 'title') }
+    result.map { |bookmark| Bookmark.new(bookmark['url'], bookmark['title'], bookmark['id']) }
   end
 
   def add_bookmark(url, title)
@@ -23,5 +24,13 @@ class Bookmarks
 
   def valid_url?(url)
     url =~ /\A#{URI::regexp(['http', 'https'])}\z/
+  end
+
+  def delete_id(id)
+    @conn.exec("DELETE FROM bookmarks WHERE id = #{id}")
+  end
+
+  def update_id(id, url, title)
+    @conn.exec("UPDATE bookmarks SET url = '#{url}', title = '#{title}' WHERE id = #{id}")
   end
 end

@@ -1,0 +1,10 @@
+<head>
+</head>
+<body>
+  <form action='/bookmarks/<%= @bookmark_id %>' method='post'>
+    <input type='text' name='new_bookmark'/>
+    <input type='text' name='new_title'/>
+    <input type='hidden' name='_method' value='PATCH'/>
+    <input type='submit' value='Submit'/>
+  </form>
+</body>
