@@ -1,16 +1,12 @@
-require 'pg'
 require 'uri'
 require_relative 'bookmark'
+require_relative 'database'
 
 class Bookmarks
   attr_reader :all_bookmarks
 
   def initialize
-    if ENV['ENVIRONMENT'] == 'test'
-      @conn = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      @conn = PG.connect(dbname: 'bookmark_manager')
-    end
+    @conn = Database.setup
   end
 
   def get_all_bookmarks

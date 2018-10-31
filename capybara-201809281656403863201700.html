@@ -1,0 +1,49 @@
+<head>
+</head>
+<body>
+    <div class='bookmark'>
+      <a href="http://www.google.com">Google</a>
+      <form action='/bookmarks/1' method='post'>
+        <input type='hidden' name='_method' value='DELETE'/>
+        <input type='submit' value='Delete'/>
+      </form>
+      <form action='/bookmarks/1/edit' method='get'>
+        <input type='submit' value='Edit'/>
+      </form>
+      <form action='/bookmarks/comment/new ' method='get'>
+        <input type='submit' value="comment"/>
+      </form>
+    </div><br><br>
+    <div class='bookmark'>
+      <a href="http://www.destroyallsoftware.com">DestroyAllSoftware</a>
+      <form action='/bookmarks/3' method='post'>
+        <input type='hidden' name='_method' value='DELETE'/>
+        <input type='submit' value='Delete'/>
+      </form>
+      <form action='/bookmarks/3/edit' method='get'>
+        <input type='submit' value='Edit'/>
+      </form>
+      <form action='/bookmarks/comment/new ' method='get'>
+        <input type='submit' value="comment"/>
+      </form>
+    </div><br><br>
+    <div class='bookmark'>
+      <a href="https://www.google.com">GOOOOOGLE</a>
+      <form action='/bookmarks/2' method='post'>
+        <input type='hidden' name='_method' value='DELETE'/>
+        <input type='submit' value='Delete'/>
+      </form>
+      <form action='/bookmarks/2/edit' method='get'>
+        <input type='submit' value='Edit'/>
+      </form>
+      <form action='/bookmarks/comment/new ' method='get'>
+        <input type='submit' value="comment"/>
+      </form>
+    </div><br><br>
+
+  <form action='/bookmarks/new' method='get'>
+    <input type='submit' value='Add new bookmark'/>
+  </form>
+  
+
+</body>
