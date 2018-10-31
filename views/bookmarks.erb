@@ -6,10 +6,13 @@
       <a href="<%= bookmark.url %>"><%= bookmark.title %></a>
       <form action='/bookmarks/<%= bookmark.id %>' method='post'>
         <input type='hidden' name='_method' value='DELETE'/>
-        <input type='submit' value='Delete' />
+        <input type='submit' value='Delete'/>
       </form>
       <form action='/bookmarks/<%= bookmark.id %>/edit' method='get'>
-        <input type='submit' value='Edit' />
+        <input type='submit' value='Edit'/>
+      </form>
+      <form action='/bookmarks/comment' method='get'>
+        <input type='submit' value="comment"/>
       </form>
     </div><br><br>
   <% end %>
